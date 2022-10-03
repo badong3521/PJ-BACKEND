@@ -1,6 +1,17 @@
-h1 {
-  color : #fff;
-}
-h2 {
-  color : green;
-}
+.header {
+  margin: 10px; }
+  .header .header-1 {
+    margin: 10px; }
+
+.main-class {
+  margin: 10px; }
+
+.item-total {
+  padding: 0 20px; }
+
+.item-container {
+  margin: 16px; }
+  .item-container .image-container {
+    height: 180px; }
+  .item-container .item-des {
+    height: 280px; }

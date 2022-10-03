@@ -1,2 +1,16 @@
-<h2>BODY</h2>
-<h2>BODY</h2>
+<div class="d-flex item-total">
+  {{#each mog}}
+  <div class="card item-container">
+    <a href="student/{{this.slug}}">
+      <div class="card" style="width: 18rem;">
+        <img src={{this.image}} class="card-img-top image-container" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{this.class}}</h5>
+          <p class="card-text item-des">{{this.des}}</p>
+          <a href="#" class="btn btn-primary">{{this.name}}</a>
+        </div>
+      </div>
+    </a>
+  </div>
+  {{/each}}
+</div>
