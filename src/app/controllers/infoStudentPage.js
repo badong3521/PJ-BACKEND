@@ -3,24 +3,15 @@ import handle from "../../utils/mongooseHandle/mongoose.js"
 
 class InfoStudentPage {
     index(req, res) {
-        console.log("REQ" + req)
-        console.log("RES" + res)
         res.send("STUDENT")
     }
 
-    details(req, res, next) {
-        res.send("MOTHAINA")
-        console.log("REQ" + req)
-        console.log("RES" + res)
-        // Students.findById({
-        //         id: req.params.id
-        //     })
-        //     .then(student => 
-        //          res.json(student)
-        //     )
-        //     .catch(error => 
-        //         next(error)
-        //     )
+    async details(req, res, next) {
+        await Students.findOne({slug : req.params.slug})
+        .then(student => {
+            console.log("DATAA",handle.singleHandleMongoose(student))
+            return res.render("students/student" , handle.singleHandleMongoose(student))
+        })
     }
 }
 

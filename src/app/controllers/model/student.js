@@ -8,12 +8,10 @@ const Student = new Schema({
         default: 'Xem thêm'
     },
     age: {
-        type: Number,
-        min: 18,
-        index: true
+        type: String,
     },
     class: {
-        type: String, maxLength: 5
+        type: String,
     },
     createAt: {
         type: Date,
@@ -23,6 +21,9 @@ const Student = new Schema({
         type: Date,
         default: Date.now()
     },
+    slug : {
+        type: String,
+    }
 });
 
 const Students = mongoose.model('Student' , Student );

@@ -3,7 +3,7 @@ export default  {
         const mog = mongooseHandle.map(mongoose => mongoose.toObject())
         return {mog}
     },
-    singleHandleMongoose : (mongooseHandle) => {
-        return mongooseHandle ? mongooseHandle.toObject() : mongooseHandle
+    singleHandleMongoose : (mog) => {
+        return mog ? mog.toObject() : {mog}
     }
 }
