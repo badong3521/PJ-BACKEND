@@ -13,17 +13,11 @@ const Student = new Schema({
     class: {
         type: String,
     },
-    createAt: {
-        type: Date,
-        default: Date.now()
-    },
-    updateAt: {
-        type: Date,
-        default: Date.now()
-    },
     slug : {
         type: String,
-    }
+    },
+},{
+    timestamps : true
 });
 
 const Students = mongoose.model('Student' , Student );

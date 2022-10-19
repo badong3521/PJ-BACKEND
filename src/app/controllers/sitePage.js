@@ -2,12 +2,11 @@ import Students from "./model/student.js"
 import handle from "../../utils/mongooseHandle/mongoose.js"
 
 class SitePage {
-  index(req, res, next) {
-    Students.find({})
+  async index(req, res, next) {
+    console.log("RES" , res)
+   await Students.find({})
       .then(student => {
-        return res.render('home',
-          handle.multipleHandleMongoose(student)
-        )
+        return res.json({student})
       })
       .catch(error => {
         next(error);
