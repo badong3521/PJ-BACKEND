@@ -5,7 +5,7 @@ import topRoute from '../topRoute.js'
 import postStudent from '../postStudent.js'
 import bagCollections from "../bags.js"
 
-function route(app) {
+function routes(app) {
   app.use("/student" , studentDetails)
   app.use('/new', newRouter)
   app.use('/top_pages', topRoute)
@@ -14,4 +14,4 @@ function route(app) {
   app.use('/', sitePage)
 }
 
-export default route
+export default routes

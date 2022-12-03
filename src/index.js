@@ -1,54 +1,46 @@
 import express from "express";
-import path from "path";
-import {
-  fileURLToPath
-} from "url";
-import {
-  dirname
-} from "path";
 import morgan from "morgan";
 import cors from "cors"
-import {
-  create
-} from "express-handlebars";
-import route from "./routes/route/index.js";
+import routes from "./routes/route/index.js";
 import db from "./config/db/index.js"
 import bodyParser from "body-parser"
+import cookieParser from "cookie-parser"
 
+const app = express();
+
+//CONNECT DB MONGO
 db.connect();
 
-const hbs = create({
-  extname: ".hbs"
-});
-const __dirname = dirname(fileURLToPath(
-  import.meta.url));
-const app = express();
-const port = 4000;
-const jsonParser = bodyParser.json();
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const port = 8000;
 
-app.use(cors({origin : true}))
-app.use(express.json());
-app.use(morgan("combined"));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({
-  extended : true
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+
+app.use(cors({
+  origin: true
 }))
 
 
+app.use(cookieParser());
+app.use(express.json());
+app.use(morgan("combined"));
+app.use(express.urlencoded({
+  extended: true
+}))
 
-// app.engine("hbs", hbs.engine);
-// app.set("view engine", "hbs");
-// app.set("views", path.join(__dirname, "resource", "views"));
+//ROUTES
+routes(app);
 
-route(app);
-// app.post('/login', urlencodedParser, function (req, res) {
-//   res.send('welcome, ' + req.body.username)
-// })
+// SET HEADERS
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
-// app.post('/api/users', jsonParser, function (req, res) {
-//   // create user in req.body
-// })
 
 app.listen(port, () => {
   console.log("LISTENING SUCCESSFUL");

@@ -3,10 +3,12 @@ import handle from "../../utils/mongooseHandle/mongoose.js"
 
 class SitePage {
   async index(req, res, next) {
-    console.log("RES" , res)
-   await Students.find({})
+    console.log("req", req)
+    await Students.find({})
       .then(student => {
-        return res.json({student})
+        return res.json({
+          student
+        })
       })
       .catch(error => {
         next(error);
