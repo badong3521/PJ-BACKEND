@@ -8,5 +8,4 @@ const router = Router();
 router.get("/", bagCollections.index);
 router.post("/", bagCollections.postTest);
 
-
 export default router;

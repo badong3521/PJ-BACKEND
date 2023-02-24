@@ -3,11 +3,9 @@ import Bags from "./model/collectionBag.js"
 
 class BagCollections {
   async index(req, res, next) {
-    console.log("RES", res)
-    console.log("REQ", req)
     await Bags.find({})
       .then(bag => {
-        // console.log("itemBag", bag)
+        console.log("itemBag", bag)
         return res.json({
           test: "test123456"
         })

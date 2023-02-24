@@ -1,12 +1,17 @@
 import mongoose from 'mongoose';
+import dotenv from "dotenv"
 
-async function connect () {
+dotenv.config()
+
+async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/manager_student_dev');
+        await mongoose.connect(process.env.MONGODB_URL);
         console.log("Connect successfully !")
     } catch (error) {
-        console.log("Fail to connect" , error)
+        console.log("Fail to connect", error)
     }
 }
 
-export default {connect}
+export default {
+    connect
+}
